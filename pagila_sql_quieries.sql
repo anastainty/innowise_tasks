@@ -12,3 +12,21 @@ ORDER BY
     film_count DESC;
 
 -- Вывести 10 актеров, чьи фильмы большего всего арендовали, отсортировать по убыванию
+SELECT
+    actor.actor_id,
+    actor.first_name,
+    actor.last_name
+FROM actor
+JOIN film_actor ON actor.actor_id = film_actor.actor_id
+JOIN film ON film_actor.film_id = film.film_id
+JOIN inventory ON film.film_id = inventory.film_id
+JOIN rental ON inventory.inventory_id = rental.inventory_id
+GROUP BY actor.actor_id, actor.first_name, actor.last_name
+ORDER BY COUNT(rental_id) DESC
+LIMIT 10;
+
+-- Вывести категорию фильмов, на которую потратили больше всего денег
+-- Вывести названия фильмов, которых нет в inventory. Написать запрос без использования оператора IN
+-- Вывести топ 3 актеров, которые больше всего появлялись в фильмах в категории “Children”. Если у нескольких актеров одинаковое кол-во фильмов, вывести всех
+-- Вывести города с количеством активных и неактивных клиентов (активный — customer.active = 1). Отсортировать по количеству неактивных клиентов по убыванию
+-- Вывести категорию фильмов, у которой самое большое кол-во часов суммарной аренды в городах (customer.address_id в этом city), и которые начинаются на букву “a”. То же самое сделать для городов в которых есть символ “-”. Написать все в одном запросе
