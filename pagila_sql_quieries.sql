@@ -32,10 +32,8 @@ JOIN film ON film_category.film_id = film.film_id
 JOIN inventory ON film.film_id = inventory.film_id
 JOIN rental ON inventory.inventory_id = rental.inventory_id
 JOIN payment ON  rental.rental_id = payment.rental_id
-GROUP BY
-    category.name
-ORDER BY
-    SUM(payment.amount) DESC
+GROUP BY category.name
+ORDER BY SUM(payment.amount) DESC
 LIMIT 1;
 
 -- Вывести названия фильмов, которых нет в inventory. Написать запрос без использования оператора IN
