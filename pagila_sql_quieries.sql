@@ -54,7 +54,8 @@ WITH actor_film_counts AS (
         actor.last_name,
         COUNT(DISTINCT film.film_id) AS film_count,
         DENSE_RANK() OVER (ORDER BY COUNT(DISTINCT film.film_id) DESC) AS rank
-    FROM actor
+    FROM 
+        actor
     JOIN film_actor ON actor.actor_id = film_actor.actor_id
     JOIN film ON film_actor.film_id = film.film_id
     JOIN film_category ON film.film_id = film_category.film_id
