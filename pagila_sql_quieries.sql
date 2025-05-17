@@ -26,6 +26,20 @@ ORDER BY COUNT(rental_id) DESC
 LIMIT 10;
 
 -- Вывести категорию фильмов, на которую потратили больше всего денег
+SELECT
+    category.name
+FROM category
+JOIN film_category ON category.category_id = film_category.category_id
+JOIN film ON film_category.film_id = film.film_id
+JOIN inventory ON film.film_id = inventory.film_id
+JOIN rental ON inventory.inventory_id = rental.inventory_id
+JOIN payment ON  rental.rental_id = payment.rental_id
+GROUP BY
+    category.name
+ORDER BY
+    SUM(payment.amount) DESC
+LIMIT 1;
+
 -- Вывести названия фильмов, которых нет в inventory. Написать запрос без использования оператора IN
 -- Вывести топ 3 актеров, которые больше всего появлялись в фильмах в категории “Children”. Если у нескольких актеров одинаковое кол-во фильмов, вывести всех
 -- Вывести города с количеством активных и неактивных клиентов (активный — customer.active = 1). Отсортировать по количеству неактивных клиентов по убыванию
