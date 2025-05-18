@@ -71,5 +71,23 @@ WHERE rank <= 3
 ORDER BY film_count DESC;
 
 -- Вывести города с количеством активных и неактивных клиентов (активный — customer.active = 1). Отсортировать по количеству неактивных клиентов по убыванию
+WITH active_count AS (
+    SELECT
+        city.city,
+        COUNT(*) FILTER (WHERE customer.activebool = TRUE) AS active,
+        COUNT(*) FILTER (WHERE customer.activebool = FALSE) AS inactive
+    FROM
+        city
+    LEFT JOIN address ON city.city_id = address.city_id
+    LEFT JOIN customer ON address.address_id = customer.address_id
+    GROUP BY city.city
+)
+SELECT
+    city,
+    active,
+    inactive
+FROM
+    active_count
+ORDER BY inactive DESC;
 
 -- Вывести категорию фильмов, у которой самое большое кол-во часов суммарной аренды в городах (customer.address_id в этом city), и которые начинаются на букву “a”. То же самое сделать для городов в которых есть символ “-”. Написать все в одном запросе
