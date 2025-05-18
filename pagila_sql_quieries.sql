@@ -10,7 +10,6 @@ ORDER BY film_count DESC;
 
 -- Вывести 10 актеров, чьи фильмы большего всего арендовали, отсортировать по убыванию
 SELECT
-    actor.actor_id,
     actor.first_name,
     actor.last_name
 FROM
@@ -47,7 +46,6 @@ WHERE inventory.inventory_id IS NULL;
 -- Вывести топ 3 актеров, которые больше всего появлялись в фильмах в категории “Children”. Если у нескольких актеров одинаковое кол-во фильмов, вывести всех
 WITH actor_film_counts AS (
     SELECT
-        actor.actor_id,
         actor.first_name,
         actor.last_name,
         COUNT(DISTINCT film.film_id) AS film_count,
@@ -59,10 +57,9 @@ WITH actor_film_counts AS (
     JOIN film_category ON film.film_id = film_category.film_id
     JOIN category ON film_category.category_id = category.category_id
     WHERE category.name = 'Children'
-    GROUP BY actor.actor_id, actor.first_name, actor.last_name
+    GROUP BY actor.first_name, actor.last_name
 )
 SELECT
-    actor_id,
     first_name,
     last_name
 FROM
