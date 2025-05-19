@@ -58,7 +58,7 @@ WITH actor_film_counts AS (
     JOIN category ON film_category.category_id = category.category_id
     WHERE category.name = 'Children'
     GROUP BY actor.first_name, actor.last_name
-    )
+)
 SELECT
     first_name,
     last_name
@@ -78,7 +78,7 @@ WITH active_count AS (
     LEFT JOIN address ON city.city_id = address.city_id
     LEFT JOIN customer ON address.address_id = customer.address_id
     GROUP BY city.city
-    )
+)
 SELECT
     city,
     active,
