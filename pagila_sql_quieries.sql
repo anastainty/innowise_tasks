@@ -58,7 +58,7 @@ WITH actor_film_counts AS (
     JOIN category ON film_category.category_id = category.category_id
     WHERE category.name = 'Children'
     GROUP BY actor.first_name, actor.last_name
-)
+    )
 SELECT
     first_name,
     last_name
@@ -78,7 +78,7 @@ WITH active_count AS (
     LEFT JOIN address ON city.city_id = address.city_id
     LEFT JOIN customer ON address.address_id = customer.address_id
     GROUP BY city.city
-)
+    )
 SELECT
     city,
     active,
@@ -87,4 +87,48 @@ FROM
     active_count
 ORDER BY inactive DESC;
 
--- Вывести категорию фильмов, у которой самое большое кол-во часов суммарной аренды в городах (customer.address_id в этом city), и которые начинаются на букву “a”. То же самое сделать для городов в которых есть символ “-”. Написать все в одном запросе
+-- Вывести категорию фильмов, у которой самое большое кол-во часов суммарной аренды в городах (customer.address_id в этом city), название которых начинаются на букву “a”. То же самое сделать для городов, в которых есть символ “-”. Написать все в одном запросе
+WITH city_groups AS (
+    SELECT
+        city.city_id,
+        CASE
+            WHEN city.city LIKE 'A%' THEN 'Starts with A'
+            WHEN city.city LIKE '%-%' THEN 'Contains hyphen'
+        END AS city_group
+    FROM
+        city
+    WHERE
+        city.city LIKE 'A%' OR
+        city.city LIKE '%-%'
+),
+rental_data AS (
+    SELECT
+        category.name AS category,
+        city_groups.city_group,
+        SUM(film.length) AS total_hours
+    FROM
+        rental
+    JOIN customer ON rental.customer_id = customer.customer_id
+    JOIN address ON customer.address_id = address.address_id
+    JOIN city_groups ON address.city_id = city_groups.city_id
+    JOIN inventory ON rental.inventory_id = inventory.inventory_id
+    JOIN film ON inventory.film_id = film.film_id
+    JOIN film_category ON film.film_id = film_category.film_id
+    JOIN category ON film_category.category_id = category.category_id
+    GROUP BY category.name, city_groups.city_group
+),
+ranked_categories AS (
+    SELECT
+        category,
+        DENSE_RANK() OVER (
+            PARTITION BY city_group
+            ORDER BY total_hours DESC
+        ) AS rank
+    FROM
+        rental_data
+)
+SELECT
+    category
+FROM
+    ranked_categories
+WHERE rank = 1;
