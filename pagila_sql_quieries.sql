@@ -41,7 +41,7 @@ SELECT
 FROM
     film
 LEFT JOIN inventory ON film.film_id = inventory.film_id
-WHERE inventory.inventory_id IS NULL;
+WHERE inventory.film_id IS NULL;
 
 -- Вывести топ 3 актеров, которые больше всего появлялись в фильмах в категории “Children”. Если у нескольких актеров одинаковое кол-во фильмов, вывести всех
 WITH actor_film_counts AS (
