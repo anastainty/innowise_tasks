@@ -7,15 +7,6 @@ It includes PostgreSQL SQL queries and Python 3.12 scripts that:
 - Execute database queries
 - Save the output results into both JSON and XML formats
 
-## 🗂 Repository Structure
-├── sql/ # PostgreSQL query files
-├── data/ # Input JSON files
-├── scripts/ # Python 3.12 scripts
-├── output/ # Generated JSON and XML results
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
-
-
 ## 🚀 Getting Started
 
 ### Prerequisites
