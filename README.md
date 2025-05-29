@@ -39,21 +39,6 @@ pip install -r requirements.txt
 ### ⚙️ Configuration
 Update database connection settings in the Python scripts (e.g., host, port, database, user, password) according to your environment.
 
-### 📥 Data Loading & Query Execution
-Each Python script is responsible for a specific part of the workflow:
-
-Load data from JSON into PostgreSQL
-Execute SQL queries from .sql files
-Export results to JSON and XML
-You can run scripts like this:
-
-```bash
-python scripts/load_data.py
-python scripts/run_queries.py
-```
-
-Output files will be saved in the output/ directory.
-
 ### 📦 Dependencies
 
 All required Python packages are listed in requirements.txt.
