@@ -3,9 +3,8 @@
 This repository contains solutions to internship tasks completed during the Innowise Group program.  
 It includes PostgreSQL SQL queries and Python 3.12 scripts that:
 
-- Load data from JSON files into a PostgreSQL database
+- Load data from JSON files into a PostgreSQL database, execute database queries and save the output results into both JSON and XML formats
 - Execute database queries
-- Save the output results into both JSON and XML formats
 
 ## 🚀 Getting Started
 
