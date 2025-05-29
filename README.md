@@ -1,12 +1,37 @@
-Welcome to the innowise_tasks repository! This project showcases solutions to various tasks, primarily focusing on data handling and database interaction. Here, you'll find a collection of SQL queries for PostgreSQL and Python scripts designed to automate common data operations.
+# Innowise Internship Tasks
 
-Key Features:
-PostgreSQL Database Operations: SQL scripts for setting up and managing a PostgreSQL database.
-Automated Data Loading: Python scripts that efficiently load data from JSON files into your PostgreSQL database.
-Dynamic Query Execution: Python scripts to execute database queries and save the results in both JSON and XML formats, demonstrating flexible data output.
+This repository contains solutions to internship tasks completed during the Innowise Group program.  
+It includes PostgreSQL SQL queries and Python 3.12 scripts that:
 
-Repository Structure:
-pagila_sql_queries.sql: Contains SQL queries for working with the PostgreSQL database.
-python task/: Houses Python 3.12 scripts:
-Scripts for loading data from JSON files into PostgreSQL.
-Scripts for executing database queries and saving results in JSON and XML formats.
+- Load data from JSON files into a PostgreSQL database
+- Execute database queries
+- Save the output results into both JSON and XML formats
+
+## 🗂 Repository Structure
+├── sql/ # PostgreSQL query files
+├── data/ # Input JSON files
+├── scripts/ # Python 3.12 scripts
+├── output/ # Generated JSON and XML results
+├── requirements.txt # Python dependencies
+└── README.md # Project documentation
+
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.12
+- PostgreSQL server running locally or remotely
+- Access to a database and user credentials
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/anastainty/innowise_tasks.git
+cd innowise_tasks```
+
+2.Set up a virtual environment (optional but recommended):
+
+
