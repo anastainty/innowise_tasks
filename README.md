@@ -36,12 +36,14 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+The requirements file is created for each task. You can find the file in folder
+
 ### ⚙️ Configuration
 Update database connection settings in the Python scripts (e.g., host, port, database, user, password) according to your environment.
 
 ### 📦 Dependencies
 
-All required Python packages are listed in requirements.txt.
+Each task has its own requirements.txt file, located within its respective task folder.
 
 ### 📚 License
 
