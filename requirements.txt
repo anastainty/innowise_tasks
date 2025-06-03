@@ -1,3 +1,0 @@
-psycopg2-binary>=2.9
-xmltodict>=0.13
-simplejson>=3.19
